@@ -17,18 +17,49 @@
     </div>
 </nav>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron
-            and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1>Find a movie</h1>
+        <h4>Search for a movie</h4>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <input [ngFormControl]="searchBox" type="text" class="form-control" placeholder="Search for...">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="container">
     <!-- Example row of columns -->
+    <div *ngIf="moviesSearched" class="row">
+        <!--<ul>
+            <div *ngFor="let movie of moviesSearched, let i = index">
+                <li *ngIf = "i < 6">{{movie.title}}</li>
+                
+            </div>
+        </ul>-->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search Results</h3>
+            </div>
+            <div class="panel-body">
+                <div *ngFor="let movie of moviesSearched, let i = index">
+                    <div *ngIf="i < 6">
+                        <div class="col-md-2 movies">
+                            <h4 class="title_space">
+                                <div>{{ movie.title }}</div>
+                            </h4>
+                            <img src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
+                            <p><a class="btn btn-movies" href="#" role="button">View details</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <movies></movies>
     </div>

@@ -11,6 +11,7 @@ import { MoviedbService } from '../services/moviedb.service';
 export class MoviesComponent implements OnInit {
 
     moviesPopular: Array<Object>;
+    moviesInTheatres: Array<Object>;
 
     constructor(private _moviedbService: MoviedbService) { }
 
@@ -18,6 +19,9 @@ export class MoviesComponent implements OnInit {
         this._moviedbService.getPopularMovies()
             .subscribe(data => this.moviesPopular = data.results);
 
+        this._moviedbService.getMoviesInTheatres()
+            .subscribe(data => this.moviesInTheatres = data.results);
     }
+
 
 }

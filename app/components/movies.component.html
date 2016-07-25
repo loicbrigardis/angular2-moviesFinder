@@ -16,3 +16,21 @@
         </div>
     </div>
 </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Movies In Theatres</h3>
+    </div>
+    <div class="panel-body">
+        <div *ngFor="let movieInTheatres of moviesInTheatres, let i = index">
+            <div *ngIf="i < 6">
+                <div class="col-md-2 movies">
+                    <h4 class="title_space">
+                        <div>{{ movieInTheatres.title }}</div>
+                    </h4>
+                    <img src="http://image.tmdb.org/t/p/w500/{{ movieInTheatres.poster_path }}" alt="{{ movieInTheatres.title }}">
+                    <p><a class="btn btn-movies" href="#" role="button">View details</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
