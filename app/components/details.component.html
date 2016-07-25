@@ -12,12 +12,12 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="http://image.tmdb.org/t/p/w500/{{ movieDetail.poster_path }}" alt="{{ movieDetail.title }}">
+                    <img *ngIf="movieDetail.poster_path" src="http://image.tmdb.org/t/p/w500/{{ movieDetail.poster_path }}" alt="{{ movieDetail.title }}">
                 </div>
                 <div class="col-md-7">
                     <ul class="list-group">
                         <li class="list-group-item"><strong>Genres :</strong>
-                            <span *ngFor="let genre of movieDetail.genres">{{genre.name}}</span>
+                            <ul *ngFor="let genre of movieDetail.genres">{{genre.name}}</ul>
                         </li>
                         <li class="list-group-item"><strong>Release date </strong>{{movieDetail.release_date | date:'dd-MM-yyyy'}}</li>
                     </ul>

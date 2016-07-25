@@ -17,7 +17,6 @@ import 'rxjs/add/operator/filter';
     templateUrl: 'app.component.html',
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     providers: [MoviedbService]
-
 })
 
 export class AppComponent implements OnInit {
@@ -27,21 +26,21 @@ export class AppComponent implements OnInit {
     constructor(
         private _router: Router,
         private _moviedbService: MoviedbService) {
-
     }
 
     ngOnInit() {
         this.searchBox.valueChanges
         .debounceTime(600)
         .distinctUntilChanged()
-        //.filter(val => val.length >= 3)
+        .filter(val => val.length <= 20)
         .flatMap(searchStr => this._moviedbService.getSearchMovie(searchStr))
-        .subscribe(data => this.moviesSearched = data['results'])
+        .subscribe(data => {
+            this.moviesSearched = data['results'];         
+        });
 
     }
 
     onClickDetail(movie: Object) {
-        
         let movieId = movie['id'];
         this._router.navigate(['movie', movieId]);
         this.searchBox.updateValue('');

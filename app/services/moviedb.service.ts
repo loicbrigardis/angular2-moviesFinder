@@ -18,7 +18,7 @@ export class MoviedbService {
             .map(res => res.json());
     }
 
-    getSearchMovie(searchStr: any) {
+    public getSearchMovie(searchStr: any) {
         if (searchStr) {
             return this._jsonp.get('http://api.themoviedb.org/3/search/movie?query=' + searchStr + '&callback=JSONP_CALLBACK&sort_by=popularity.desc&api_key=' + this.apiKey)
                 .map(res => res.json());

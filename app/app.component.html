@@ -24,7 +24,12 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="form-group">
-                        <input [ngFormControl]="searchBox" type="text" class="form-control" placeholder="Search for...">
+                    <input [ngFormControl]="searchBox" type="text" maxlength="20" class="form-control" placeholder="Search for...">
+                </div>
+                <div *ngIf="moviesSearched">
+                    <div *ngIf="moviesSearched.length <= 0" class="panel panel-default">
+                        <h3 class="panel-title">No results found</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,7 +38,7 @@
 
 <div class="container">
     <!-- Example row of columns -->
-    <div *ngIf="moviesSearched" class="row">
+    <div *ngIf="moviesSearched && moviesSearched.length > 0" class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Search Results</h3>
@@ -42,10 +47,11 @@
                 <div *ngFor="let movie of moviesSearched, let i = index">
                     <div *ngIf="i < 6">
                         <div class="col-md-2 movies">
+                            <img *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
                             <h4 class="title_space">
+                                <span class="releaseDate">{{movie.release_date | date:'dd-MM-yyyy'}}</span>
                                 <div>{{ movie.title }}</div>
                             </h4>
-                            <img src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
                             <p><button class="btn btn-movies" (click)="onClickDetail(movie)" role="button">View details</button></p>
                         </div>
                     </div>
