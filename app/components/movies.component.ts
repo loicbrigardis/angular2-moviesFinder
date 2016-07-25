@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviedbService } from '../services/moviedb.service';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
+import { MoviedbService } from '../services/moviedb.service';
 
 @Component({
     moduleId: module.id,
     selector: 'movies',
     templateUrl: 'movies.component.html',
-    providers: [MoviedbService]
+    providers: [MoviedbService],
+    directives: [ROUTER_DIRECTIVES]
 })
 export class MoviesComponent implements OnInit {
 
     moviesPopular: Array<Object>;
     moviesInTheatres: Array<Object>;
 
-    constructor(private _moviedbService: MoviedbService) { }
+    constructor(
+        private _router: Router,
+        private _moviedbService: MoviedbService) { }
 
     ngOnInit() {
         this._moviedbService.getPopularMovies()
@@ -21,6 +25,10 @@ export class MoviesComponent implements OnInit {
 
         this._moviedbService.getMoviesInTheatres()
             .subscribe(data => this.moviesInTheatres = data.results);
+    }
+
+    onClickDetail (movie:Object) {
+        this._router.navigate(['movie', movie.id]);
     }
 
 

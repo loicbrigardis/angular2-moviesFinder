@@ -1,0 +1,34 @@
+<div *ngIf="movieDetail">
+
+    <div class="row">
+        <div class="col-md-3">
+            <button routerLink="" class="btn btn-primary btn-block">Back</button>
+        </div>
+    </div>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{movieDetail.original_title}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="http://image.tmdb.org/t/p/w500/{{ movieDetail.poster_path }}" alt="{{ movieDetail.title }}">
+                </div>
+                <div class="col-md-7">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Genres :</strong>
+                            <span *ngFor="let genre of movieDetail.genres">{{genre.name}}</span>
+                        </li>
+                        <li class="list-group-item"><strong>Release date </strong>{{movieDetail.release_date | date:'dd-MM-yyyy'}}</li>
+                    </ul>
+                    <div class="vote-avg">Vote Average<br><span>{{movieDetail.vote_average}}</span></div>
+                    <div class="overview">
+                        <h3>Overview</h3>
+                        <div>{{movieDetail.overview}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

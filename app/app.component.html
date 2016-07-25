@@ -23,8 +23,8 @@
         <h4>Search for a movie</h4>
         <div class="row">
             <div class="col-md-10">
-                <div class="input-group">
-                    <input [ngFormControl]="searchBox" type="text" class="form-control" placeholder="Search for...">
+                <div class="form-group">
+                        <input [ngFormControl]="searchBox" type="text" class="form-control" placeholder="Search for...">
                 </div>
             </div>
         </div>
@@ -34,13 +34,6 @@
 <div class="container">
     <!-- Example row of columns -->
     <div *ngIf="moviesSearched" class="row">
-        <!--<ul>
-            <div *ngFor="let movie of moviesSearched, let i = index">
-                <li *ngIf = "i < 6">{{movie.title}}</li>
-                
-            </div>
-        </ul>-->
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Search Results</h3>
@@ -53,15 +46,16 @@
                                 <div>{{ movie.title }}</div>
                             </h4>
                             <img src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}">
-                            <p><a class="btn btn-movies" href="#" role="button">View details</a></p>
+                            <p><a class="btn btn-movies" (click)="onClickDetail(movie)" role="button">View details</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- movies list from movies.component -->
     <div class="row">
-        <movies></movies>
+        <router-outlet></router-outlet>
     </div>
 
     <hr>

@@ -25,3 +25,19 @@ img {
   background-color: #292929 !important;
   color: #fff;
 }
+
+.vote-avg {
+  background: #000;
+  padding: 7px;
+  color: #fff;
+  text-align: center;
+  width: 150px;
+}
+
+.vote-avg span {
+  font-size: 50px;
+}
+
+.overview {
+  margin-top: 20px;
+}

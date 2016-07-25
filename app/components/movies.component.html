@@ -10,7 +10,7 @@
                         <div>{{ moviepop.title }}</div>
                     </h4>
                     <img src="http://image.tmdb.org/t/p/w500/{{ moviepop.poster_path }}" alt="{{ moviepop.title }}">
-                    <p><a class="btn btn-movies" href="#" role="button">View details</a></p>
+                    <p><button class="btn btn-movies" (click)="onClickDetail(moviepop)" role="button">View details</button></p>
                 </div>
             </div>
         </div>
@@ -28,9 +28,10 @@
                         <div>{{ movieInTheatres.title }}</div>
                     </h4>
                     <img src="http://image.tmdb.org/t/p/w500/{{ movieInTheatres.poster_path }}" alt="{{ movieInTheatres.title }}">
-                    <p><a class="btn btn-movies" href="#" role="button">View details</a></p>
+                    <p><button class="btn btn-movies" (click)="onClickDetail(movieInTheatres)" role="button">View details</button></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

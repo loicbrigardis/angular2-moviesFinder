@@ -18,13 +18,18 @@ export class MoviedbService {
             .map(res => res.json());
     }
 
-    getSearchMovie(searchStr:string) {
+    getSearchMovie(searchStr: any) {
         if (searchStr) {
-            return this._jsonp.get('http://api.themoviedb.org/3/search/movie?query='+ searchStr +'&callback=JSONP_CALLBACK&sort_by=popularity.desc&api_key='+ this.apiKey)
-            .map(res => res.json());
+            return this._jsonp.get('http://api.themoviedb.org/3/search/movie?query=' + searchStr + '&callback=JSONP_CALLBACK&sort_by=popularity.desc&api_key=' + this.apiKey)
+                .map(res => res.json());
         } else {
             return <any>[{}];
         }
+    }
+
+    public getMovie(id: number) {
+        return this._jsonp.get('http://api.themoviedb.org/3/movie/' + id + '?&callback=JSONP_CALLBACK&api_key=' + this.apiKey)
+            .map(res => res.json());
     }
 
 }
