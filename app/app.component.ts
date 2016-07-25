@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/filter';
 
 @Component({
     moduleId: module.id,
@@ -24,18 +25,25 @@ export class AppComponent implements OnInit {
     moviesSearched: Array<Object>;
 
     constructor(
-        private _router:Router,
-        private _moviedbService: MoviedbService) { }
+        private _router: Router,
+        private _moviedbService: MoviedbService) {
+
+    }
 
     ngOnInit() {
         this.searchBox.valueChanges
         .debounceTime(600)
         .distinctUntilChanged()
+        //.filter(val => val.length >= 3)
         .flatMap(searchStr => this._moviedbService.getSearchMovie(searchStr))
-        .subscribe(data => this.moviesSearched = data.results)
+        .subscribe(data => this.moviesSearched = data['results'])
+
     }
 
-        onClickDetail (movie:Object) {
-        this._router.navigate(['movie', movie.id]);
+    onClickDetail(movie: Object) {
+        
+        let movieId = movie['id'];
+        this._router.navigate(['movie', movieId]);
+        this.searchBox.updateValue('');
     }
 }

@@ -28,7 +28,8 @@ export class MoviesComponent implements OnInit {
     }
 
     onClickDetail (movie:Object) {
-        this._router.navigate(['movie', movie.id]);
+        let movieId = movie['id'];
+        this._router.navigate(['movie', movieId]);
     }
 
 

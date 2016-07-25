@@ -27,4 +27,8 @@ export class DetailsComponent implements OnInit {
             .subscribe(data => this.movieDetail = data);
     }
 
+    onClickBackBtn() {
+         this._router.navigate(['']);
+    }
+
 }
